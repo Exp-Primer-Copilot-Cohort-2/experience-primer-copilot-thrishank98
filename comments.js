@@ -1,6 +1,13 @@
-// create a web server that listens on port 3000
-// 1. create a route for /comments
-// 2. create a route for /comments/new
-// 3. create a route for /comments/:id
-// 4. create a route for /comments/:id/edit
-// 5. create a route for /comments/:id/delete
+// create web server
+var http = require('http');
+var fs = require('fs');
+
+http.createServer(function(req, res){
+    fs.readFile('comments.json', function(err, data){
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(data);
+        res.end();
+    });
+}).listen(3000, 'localhost');
+
+console.log('Server running at http://localhost:3000/');
